@@ -1,31 +1,30 @@
 #!/usr/bin/env python
-# -*- coding: utf-8 -*-
 import os
-import sys
-import subprocess
+
 from flask.ext.script import Manager, Shell, Server
 from flask.ext.migrate import MigrateCommand
+from flask.ext.script.commands import ShowUrls, Clean
 
-from {{cookiecutter.app_name}}.app import create_app
-from {{cookiecutter.app_name}}.user.models import User
-from {{cookiecutter.app_name}}.settings import DevConfig, ProdConfig
-from {{cookiecutter.app_name}}.database import db
-
-if os.environ.get("{{cookiecutter.app_name | upper}}_ENV") == 'prod':
-    app = create_app(ProdConfig)
-else:
-    app = create_app(DevConfig)
+from {{cookiecutter.app_name}}.app import app, db
 
 HERE = os.path.abspath(os.path.dirname(__file__))
 TEST_PATH = os.path.join(HERE, 'tests')
 
 manager = Manager(app)
+manager.add_command('server', Server())
+manager.add_command('db', MigrateCommand)
+manager.add_command('show-urls', ShowUrls())
+manager.add_command('clean', Clean())
 
-def _make_context():
-    """Return context dict for a shell session so you can access
-    app, db, and the User model by default.
+
+@manager.shell
+def make_shell_context():
+    """ Creates a python REPL with several default imports
+        in the context of the app
     """
-    return {'app': app, 'db': db, 'User': User}
+
+    return dict(app=app, db=db)
+
 
 @manager.command
 def test():
@@ -34,9 +33,6 @@ def test():
     exit_code = pytest.main([TEST_PATH, '--verbose'])
     return exit_code
 
-manager.add_command('server', Server())
-manager.add_command('shell', Shell(make_context=_make_context))
-manager.add_command('db', MigrateCommand)
 
 if __name__ == '__main__':
     manager.run()
