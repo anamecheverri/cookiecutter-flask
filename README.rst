@@ -18,32 +18,12 @@ You will be asked about your basic info (name, project name, app name, etc.). Th
 Features
 --------
 
-- Bootstrap 3 and Font Awesome 4 with starter templates
-- Flask-SQLAlchemy with basic User model
+- Flask-SQLAlchemy
 - Easy database migrations with Flask-Migrate
-- Flask-WTForms with login and registration forms
-- Flask-Login for authentication
-- Flask-Bcrypt for password hashing
-- Procfile for deploying to a PaaS (e.g. Heroku)
-- pytest and Factory-Boy for testing (example tests included)
+- Flask-WTForms
+- pytest
 - A simple ``manage.py`` script.
-- CSS and JS minification using Flask-Assets
-- Optional bower support for frontend package management
-- Caching using Flask-Cache
 - Useful debug toolbar
-- Utilizes best practices: `Blueprints <http://flask.pocoo.org/docs/blueprints/>`_ and `Application Factory <http://flask.pocoo.org/docs/patterns/appfactories/>`_ patterns
-
-Screenshots
------------
-
-.. image:: https://dl.dropboxusercontent.com/u/1693233/github/cookiecutter-flask-01.png
-    :target: https://dl.dropboxusercontent.com/u/1693233/github/cookiecutter-flask-01.png
-    :alt: Home page
-
-.. image:: https://dl.dropboxusercontent.com/u/1693233/github/cookiecutter-flask-02.png.png
-    :target: https://dl.dropboxusercontent.com/u/1693233/github/cookiecutter-flask-02.png.png
-    :alt: Registration form
-
 
 
 Inspiration
