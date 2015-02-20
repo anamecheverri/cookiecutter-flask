@@ -42,6 +42,8 @@ docs/_build
 
 .webassets-cache
 
+.idea
+
 # Virtualenvs
 env
-env*
+.python-version

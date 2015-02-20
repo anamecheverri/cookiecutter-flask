@@ -1,3 +1,3 @@
-from .app import db
+from . import db
 
 """Add your models here."""
