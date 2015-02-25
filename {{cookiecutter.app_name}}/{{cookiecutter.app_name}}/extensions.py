@@ -7,5 +7,6 @@ db = SQLAlchemy()
 from flask.ext.migrate import Migrate
 migrate = Migrate()
 
-from flask.ext.debugtoolbar import DebugToolbarExtension
-debug_toolbar = DebugToolbarExtension()
+# Change this to HerokuConfig if using Heroku.
+from flask.ext.appconfig import AppConfig
+config = AppConfig()

@@ -1,20 +1,22 @@
 from flask import Flask, render_template
 
-from .extensions import (
-    db,
-    migrate,
-    debug_toolbar,
-)
+from . import models
+from .extensions import db, migrate, config
+from .views import {{cookiecutter.app_name}}
+
 
 SQLALCHEMY_DATABASE_URI = "sqlite:////tmp/{{cookiecutter.app_name}}.db"
 DEBUG = True
 SECRET_KEY = 'development-key'
 
-app = Flask(__name__)
-app.config.from_object(__name__)
 
-db.init_app(app)
-debug_toolbar.init_app(app)
-migrate.init_app(app, db)
+def create_app():
+    app = Flask(__name__)
+    app.config.from_object(__name__)
+    app.register_blueprint({{cookiecutter.app_name}})
 
-from . import models, views
+    config.init_app(app)
+    db.init_app(app)
+    migrate.init_app(app, db)
+
+    return app

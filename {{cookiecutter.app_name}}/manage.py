@@ -5,11 +5,10 @@ from flask.ext.script import Manager, Shell, Server
 from flask.ext.migrate import MigrateCommand
 from flask.ext.script.commands import ShowUrls, Clean
 
-from {{cookiecutter.app_name}}.app import app, db
+from {{cookiecutter.app_name}} import create_app, db
 
-HERE = os.path.abspath(os.path.dirname(__file__))
-TEST_PATH = os.path.join(HERE, 'tests')
 
+app = create_app()
 manager = Manager(app)
 manager.add_command('server', Server())
 manager.add_command('db', MigrateCommand)
@@ -24,14 +23,6 @@ def make_shell_context():
     """
 
     return dict(app=app, db=db)
-
-
-@manager.command
-def test():
-    """Run the tests."""
-    import pytest
-    exit_code = pytest.main([TEST_PATH, '--verbose'])
-    return exit_code
 
 
 if __name__ == '__main__':

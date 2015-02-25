@@ -1,7 +1,17 @@
-"""Add your views here."""
-from flask import flash
+"""Add your views here.
 
-from . import app
+We have started you with an initial blueprint. Add more as needed.
+"""
+
+from flask import Blueprint, flash
+
+
+{{cookiecutter.app_name}} = Blueprint("{{cookiecutter.app_name}}", __name__)
+
+
+@{{cookiecutter.app_name}}.route("/")
+def index():
+    return "Hello, world!"
 
 
 def flash_errors(form, category="warning"):

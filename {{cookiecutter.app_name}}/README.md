@@ -11,8 +11,6 @@ Run the following commands to bootstrap your environment.
 cd {{cookiecutter.app_name}}
 pip install -r requirements.txt
 python manage.py db init
-python manage.py db migrate
-python manage.py db upgrade
 python manage.py server
 ```
 
